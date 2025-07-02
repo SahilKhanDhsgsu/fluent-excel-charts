@@ -4,32 +4,40 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { BarChart3, ArrowLeft } from "lucide-react";
+import { BarChart3, ArrowLeft, User, Mail, Lock } from "lucide-react";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { loginStart, loginSuccess } from "@/store/slices/authSlice";
 import { toast } from "sonner";
 
-export default function Login() {
-  const [email, setEmail] = useState("guest@demo.com");
-  const [password, setPassword] = useState("demo123");
+export default function Register() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (password !== confirmPassword) {
+      toast.error("Passwords don't match");
+      return;
+    }
+
     setLoading(true);
     dispatch(loginStart());
 
-    // Simulate login - replace with actual API call
+    // Simulate registration - replace with actual API call
     setTimeout(() => {
       const user = {
-        id: "1",
+        id: Math.random().toString(36).substr(2, 9),
         email,
-        name: email.split("@")[0],
+        name,
       };
       dispatch(loginSuccess(user));
-      toast.success("Welcome back! Login successful.");
+      toast.success("Account created successfully! Welcome to Excel Analytics.");
       navigate("/dashboard");
       setLoading(false);
     }, 1000);
@@ -51,22 +59,36 @@ export default function Login() {
               <BarChart3 className="w-6 h-6 text-white" />
             </div>
             <div>
-              <CardTitle className="text-2xl font-bold">Welcome back</CardTitle>
+              <CardTitle className="text-2xl font-bold">Create Account</CardTitle>
               <CardDescription className="text-muted-foreground">
-                Sign in to your Excel Analytics account
+                Join Excel Analytics and start visualizing your data
               </CardDescription>
-              <div className="mt-3 p-3 bg-muted/50 rounded-lg">
-                <p className="text-sm font-medium text-foreground mb-1">🎯 Try Demo Access:</p>
-                <p className="text-xs text-muted-foreground">Email: guest@demo.com</p>
-                <p className="text-xs text-muted-foreground">Password: demo123</p>
-              </div>
             </div>
           </CardHeader>
 
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="name" className="flex items-center gap-2">
+                  <User className="w-4 h-4" />
+                  Full Name
+                </Label>
+                <Input
+                  id="name"
+                  type="text"
+                  placeholder="Enter your full name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                  className="focus:border-primary/50"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="email" className="flex items-center gap-2">
+                  <Mail className="w-4 h-4" />
+                  Email
+                </Label>
                 <Input
                   id="email"
                   type="email"
@@ -79,13 +101,32 @@ export default function Login() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password" className="flex items-center gap-2">
+                  <Lock className="w-4 h-4" />
+                  Password
+                </Label>
                 <Input
                   id="password"
                   type="password"
-                  placeholder="Enter your password"
+                  placeholder="Create a password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  required
+                  className="focus:border-primary/50"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="confirmPassword" className="flex items-center gap-2">
+                  <Lock className="w-4 h-4" />
+                  Confirm Password
+                </Label>
+                <Input
+                  id="confirmPassword"
+                  type="password"
+                  placeholder="Confirm your password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                   required
                   className="focus:border-primary/50"
                 />
@@ -96,14 +137,14 @@ export default function Login() {
                 className="w-full btn-gradient" 
                 disabled={loading}
               >
-                {loading ? "Signing in..." : "Sign in"}
+                {loading ? "Creating Account..." : "Create Account"}
               </Button>
             </form>
 
             <div className="mt-6 text-center text-sm">
-              <span className="text-muted-foreground">Don't have an account? </span>
-              <Link to="/register" className="text-primary hover:underline font-medium">
-                Sign up
+              <span className="text-muted-foreground">Already have an account? </span>
+              <Link to="/login" className="text-primary hover:underline font-medium">
+                Sign in
               </Link>
             </div>
           </CardContent>
