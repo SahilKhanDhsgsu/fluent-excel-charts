@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, BarChart3, Upload, PieChart, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
-import heroImage from "@/assets/hero-analytics.jpg";
+// import heroImage from "@/assets/hero-analytics.jpg";
 
 const Index = () => {
   return (
@@ -57,11 +57,15 @@ const Index = () => {
           </div>
 
           <div className="relative animate-float">
-            <img
-              src={heroImage}
-              alt="Excel Analytics Dashboard"
-              className="rounded-2xl shadow-analytics w-full"
-            />
+            <div className="w-full h-96 bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 rounded-2xl shadow-analytics flex items-center justify-center">
+              <div className="text-center space-y-4">
+                <div className="w-24 h-24 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto">
+                  <BarChart3 className="w-12 h-12 text-white" />
+                </div>
+                <div className="text-2xl font-bold text-gradient">Analytics Dashboard</div>
+                <p className="text-muted-foreground">Transform Excel data into insights</p>
+              </div>
+            </div>
             <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent rounded-2xl"></div>
           </div>
         </div>
