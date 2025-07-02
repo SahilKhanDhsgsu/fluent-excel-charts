@@ -8,35 +8,58 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    /* Excel Analytics Platform Design System */
+    --background: 248 250 252%;
     --foreground: 222.2 84% 4.9%;
 
-    --card: 0 0% 100%;
+    --card: 255 255 255%;
     --card-foreground: 222.2 84% 4.9%;
 
-    --popover: 0 0% 100%;
+    --popover: 255 255 255%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Professional blue primary */
+    --primary: 217 91% 60%;
+    --primary-foreground: 255 255 255%;
+    --primary-glow: 217 91% 70%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Sophisticated secondary */
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
 
-    --muted: 210 40% 96.1%;
+    --muted: 220 14% 96%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Purple accent for analytics */
+    --accent: 262 83% 58%;
+    --accent-foreground: 255 255 255%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 217 91% 60%;
 
-    --radius: 0.5rem;
+    /* Success and warning */
+    --success: 142 76% 36%;
+    --success-foreground: 355 35% 87%;
+    --warning: 43 96% 56%;
+    --warning-foreground: 20 14% 4%;
+
+    /* Design system enhancements */
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%), hsl(262 83% 58%));
+    --gradient-hero: linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(262 83% 58%) 50%, hsl(217 91% 70%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(255 255 255%) 0%, hsl(248 250 252%) 100%);
+    
+    --shadow-elegant: 0 10px 30px -10px hsl(217 91% 60% / 0.2);
+    --shadow-glow: 0 0 40px hsl(217 91% 70% / 0.3);
+    --shadow-card: 0 4px 16px -2px hsl(222.2 84% 4.9% / 0.1);
+
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -65,8 +88,9 @@ All colors MUST be HSL.
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 217 91% 70%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --primary-glow: 217 91% 80%;
 
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -74,15 +98,23 @@ All colors MUST be HSL.
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 262 83% 68%;
+    --accent-foreground: 222.2 84% 4.9%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --ring: 217 91% 70%;
+
+    --success: 142 76% 46%;
+    --warning: 43 96% 66%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 70%), hsl(262 83% 68%));
+    --gradient-hero: linear-gradient(135deg, hsl(217 91% 70%) 0%, hsl(262 83% 68%) 50%, hsl(217 91% 80%) 100%);
+    --shadow-elegant: 0 10px 30px -10px hsl(217 91% 70% / 0.3);
+    --shadow-glow: 0 0 40px hsl(217 91% 80% / 0.4);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -100,6 +132,79 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  /* Analytics Platform specific styles */
+  .chart-container {
+    @apply relative bg-card rounded-lg shadow-lg border border-border p-6;
+  }
+
+  .upload-area {
+    @apply border-2 border-dashed border-primary/30 rounded-lg p-8 text-center transition-colors hover:border-primary/50 hover:bg-primary/5;
+  }
+
+  .dashboard-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
+}
+
+@layer components {
+  /* Component utilities */
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 shadow-md transition-all duration-200;
+  }
+
+  .btn-gradient {
+    @apply bg-gradient-to-r from-primary to-accent text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105;
+  }
+
+  .card-analytics {
+    @apply bg-gradient-to-br from-card to-background border border-border rounded-lg shadow-card hover:shadow-elegant transition-all duration-300;
+  }
+
+  .nav-link-active {
+    @apply bg-primary text-primary-foreground shadow-md;
+  }
+
+  .chart-selector {
+    @apply p-4 border border-border rounded-lg hover:border-primary/50 transition-colors cursor-pointer;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  }
+
+  .shadow-analytics {
+    box-shadow: var(--shadow-elegant);
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out forwards;
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
 }
