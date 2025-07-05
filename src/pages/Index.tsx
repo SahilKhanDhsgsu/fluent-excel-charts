@@ -7,19 +7,19 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <nav className="container mx-auto px-6 py-4 flex items-center justify-between bg-white border-b">
+      <nav className="container mx-auto px-6 py-4 flex items-center justify-between bg-white border-b border-gray-200">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
             <BarChart3 className="w-6 h-6 text-white" />
           </div>
-          <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Excel Analytics</h1>
+          <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Excel Analytics</h1>
         </div>
         <div className="flex items-center gap-4">
           <Link to="/login">
-            <Button variant="ghost" className="hover:bg-gray-100">Login</Button>
+            <Button variant="ghost" className="hover:bg-gray-100 text-gray-700">Login</Button>
           </Link>
           <Link to="/register">
-            <Button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">Get Started</Button>
+            <Button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700">Get Started</Button>
           </Link>
         </div>
       </nav>
@@ -31,9 +31,9 @@ const Index = () => {
             <div className="space-y-6">
               <h2 className="text-5xl lg:text-6xl font-bold leading-tight text-gray-900">
                 Transform Your{" "}
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Excel Data</span>{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Excel Data</span>{" "}
                 Into Stunning{" "}
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Analytics</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Analytics</span>
               </h2>
               <p className="text-xl text-gray-600 leading-relaxed">
                 Upload your Excel files and instantly generate beautiful 2D and 3D charts. 
@@ -43,13 +43,13 @@ const Index = () => {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/register">
-                <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-lg px-8 py-6 hover:shadow-lg">
+                <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-lg px-8 py-6 hover:from-blue-700 hover:to-purple-700 shadow-lg">
                   Start Free Trial
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
               <Link to="/login">
-                <Button variant="outline" size="lg" className="text-lg px-8 py-6 border-gray-300 hover:bg-gray-50">
+                <Button variant="outline" size="lg" className="text-lg px-8 py-6 border-gray-300 hover:bg-gray-50 text-gray-700">
                   View Demo
                 </Button>
               </Link>
@@ -62,7 +62,7 @@ const Index = () => {
                 <div className="w-24 h-24 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center mx-auto">
                   <BarChart3 className="w-12 h-12 text-white" />
                 </div>
-                <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Analytics Dashboard</div>
+                <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Analytics Dashboard</div>
                 <p className="text-gray-600">Transform Excel data into insights</p>
               </div>
             </div>
@@ -130,7 +130,7 @@ const Index = () => {
             Join thousands of professionals who use Excel Analytics to create stunning visualizations.
           </p>
           <Link to="/register">
-            <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-lg px-12 py-6 hover:shadow-lg">
+            <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-lg px-12 py-6 hover:from-blue-700 hover:to-purple-700 shadow-lg">
               Get Started Today
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
