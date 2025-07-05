@@ -1,4 +1,5 @@
-import { Bell, Menu, Search, User } from "lucide-react";
+
+import { Bell, Search, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { SidebarTrigger } from "@/components/ui/sidebar";
@@ -11,15 +12,19 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { useAppSelector, useAppDispatch } from "@/hooks/useRedux";
-import { logout } from "@/store/slices/authSlice";
+import { useNavigate } from "react-router-dom";
 
 export function Header() {
-  const { user } = useAppSelector((state) => state.auth);
-  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  
+  // Simple user object - in a real app this would come from context or props
+  const user = {
+    name: "Demo User",
+    email: "guest@demo.com"
+  };
 
   const handleLogout = () => {
-    dispatch(logout());
+    navigate("/");
   };
 
   return (
@@ -45,7 +50,7 @@ export function Header() {
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="relative h-10 w-10 rounded-full hover:bg-muted/50">
               <Avatar className="h-10 w-10">
-                <AvatarFallback className="bg-gradient-primary text-white font-semibold">
+                <AvatarFallback className="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold">
                   {user?.name?.charAt(0) || 'U'}
                 </AvatarFallback>
               </Avatar>
